@@ -186,3 +186,16 @@ body {
 .main textarea:focus + .form_hint {display: inline;}
 .main select:focus + .form_hint {display: inline;}
 .main button:hover + .form_hint {display: inline;}
+
+/* styles for crappy browsers */
+.placeholder {
+	color: #999;
+}
+.main input.valid {
+	background:#e4f9da url("../img/accept.png") no-repeat 97% 50%;	
+	border: 1px solid #64df2a;
+}
+.main input.invalid {
+	background:url("../img/error.png") no-repeat 97% 50%;
+	border: 1px solid #DF5D56;
+}
