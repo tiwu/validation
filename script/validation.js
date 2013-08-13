@@ -3,6 +3,7 @@
   Version:    0.1
   History:    2013-08-06: TWUY : Initial creation
               2013-08-13: TWUY : Archiving in git
+			                     Placeholder support added
 */
 "use strict";
 
@@ -10,6 +11,32 @@
 function attributeSupported(attribute) {
 	return (attribute in document.createElement("input"));
 }
+
+// add placeholder support for non HTML5 browsers
+if(!attributeSupported('placeholder')) {
+	$(':input[placeholder]').each(function() {
+		var $obj = $(this);
+		if($obj.val() === '') {
+			$obj.addClass('placeholder');
+			$obj.val($obj.attr('placeholder'));
+		}
+		$obj.focus(function() {
+			$obj.addClass('focus');
+			if($obj.val() === $obj.attr('placeholder')) {
+				$obj.val('');
+				$obj.removeClass('placeholder');
+			}
+		}).blur(function() {
+			$obj.removeClass('focus');
+			if($obj.val() === '') {
+				$obj.addClass('placeholder');
+				$obj.val($obj.attr('placeholder'));
+			}
+		});
+	});
+}
+
+
 
 // Run on page load
 $(function(){
