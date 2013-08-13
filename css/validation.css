@@ -1,7 +1,7 @@
 /*
-  Title:      HTML5 form validation testing  
-  Version:    0.1  
-  History:    2013-08-06: TWUY : Initial creation  
+  Title:      HTML5 form validation testing
+  Version:    0.1
+  History:    2013-08-06: TWUY : Initial creation
 */
 
 body {
@@ -167,7 +167,7 @@ body {
 .main .form_hint {
     background: none repeat scroll 0 0 #FEF6C4;
     border: 1px solid #2175BB;
-    border-radius: 3px 3px 3px 3px;    
+    border-radius: 3px 3px 3px 3px;
     margin-left:20px;
 	margin-right:25px;
     padding: 2px 6px;

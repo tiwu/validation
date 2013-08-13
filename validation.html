@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/validation.css" media="screen">
 </head>
 <body>
-    
+
 <div id="reservation-test" class="main">
   <div id="messages" class="">
   <p>This page tests the HTML 5 form validation functionality and <em>tries</em> to gracefully degrade for IE.<br>
@@ -29,7 +29,7 @@
   <a href="http://forrst.com/posts/HTML5_Form_jQuery_fallback-hTO">HTML5 Form jQuery fallback</a><br>
   </p>
   </div>
-  <form class="input-form" id="reservation_form" enctype="multipart/form-data" name="reservation_form" action="#" method="post">    
+  <form class="input-form" id="reservation_form" enctype="multipart/form-data" name="reservation_form" action="#" method="post">
     <fieldset>
 	  <legend>Reservation form</legend>
       <div class="table">
@@ -38,7 +38,7 @@
               <label for="food">Select your favorite food:</label>
             </div>
             <div class="cell">
-              <select id="food" name="food" size="1" required>                
+              <select id="food" name="food" size="1" required>
                   <option value="">please select</option>
                   <option value="fruits">fruits</option>
                   <option value="vegetables">vegetables</option>
@@ -56,7 +56,7 @@
               <input type="text" id="drink" name="drink" required>
 			  <span class="form_hint">What do you prefer to drink with your meal?</span>
             </div>
-        </div>        
+        </div>
         <div class="row">
         	<div class="cell narrow">
               <label for="reason">Reason:</label>
@@ -65,7 +65,7 @@
               <textarea name="reason" id="reason" required></textarea>
 			  <span class="form_hint">Describe the reason for your party</span>
             </div>
-        </div>          
+        </div>
         <div class="row">
         	<div class="cell narrow">
               <label for="plan_date">Plan date:</label>
@@ -74,7 +74,7 @@
               <input type="text" name="plan_date" id="plan_date" value="" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" required>
 			  <span class="form_hint">Provide a realistic date</span>
             </div>
-        </div> 
+        </div>
        <div class="row">
         	<div class="cell narrow">
               <label for="comments">Comments:</label>
@@ -83,8 +83,8 @@
               <textarea id="comments" name="comments"></textarea>
 			  <span class="form_hint">In case you want to provide extra information</span>
             </div>
-        </div>       
-      
+        </div>
+
       <div class="row">
         	<div class="cell narrow">
               <label for="owner">Name:</label>
@@ -93,17 +93,17 @@
               <input type="text" name="owner" id="owner" value="Tim Wuytens" readonly>
 			  <span class="form_hint">Automatically detected</span>
             </div>
-        </div>    
-              
+        </div>
+
     <div class="row">
-    	<div class="cell narrow">&nbsp;          
+    	<div class="cell narrow">&nbsp;
         </div>
         <div class="cell">
           <button onClick="this.form.submit;">Create reservation</button>
 	  	  <span class="form_hint">Create the reservation.</span>
-        </div>      
+        </div>
     </div>
-  </form> 
+  </form>
 </div>
 <script type="text/javascript" src="./script/jquery.js"></script>
 <script type="text/javascript" src="./script/validation.js"></script>
