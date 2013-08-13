@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>HTML 5 form validation test</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-store">
+	<meta name="description" content="Test page for HTML 5 form validation">
+    <meta name="author" content="Tim Wuytens">
+	<meta name="email" content="timwuytens@gmail.com">	
+	<link rel="stylesheet" type="text/css" href="./css/validation.css" media="screen">
+</head>
+<body>
+    
+<div id="reservation-test" class="main">
+  <div id="messages" class="">
+  <p>This page tests the HTML 5 form validation functionality and <em>tries</em> to gracefully degrade for IE.<br>
+  Functionality we need:
+  <ul>
+    <li>required attribute (text, textarea, select)</li>
+    <li>pattern attribute (text, select)</li>
+    <li>placeholder attribute (text)</li>
+    <li>valid/invalid pseudo classes (for all required fields)</li>
+  </ul>
+  </p>
+  <p>Some links: <br>
+  <a href="http://webdesign.tutsplus.com/tutorials/site-elements/bring-your-forms-up-to-date-with-css3-and-html5-validation/">Bring your forms up to date with CSS3 and HTML5</a><br>
+  <a href="http://forums.asp.net/t/1911017.aspx/1?Field+Validation+for+browsers+not+supporting+html5+required+attribute">Field validation for browsers not supporting html5 required attribute</a><br>
+  <a href="http://forrst.com/posts/HTML5_Form_jQuery_fallback-hTO">HTML5 Form jQuery fallback</a><br>
+  </p>
+  </div>
+  <form class="input-form" id="reservation_form" enctype="multipart/form-data" name="reservation_form" action="#" method="post">    
+    <fieldset>
+	  <legend>Reservation form</legend>
+      <div class="table">
+        <div class="row">
+        	<div class="cell narrow">
+              <label for="food">Select your favorite food:</label>
+            </div>
+            <div class="cell">
+              <select id="food" name="food" size="1" required>                
+                  <option value="">please select</option>
+                  <option value="fruits">fruits</option>
+                  <option value="vegetables">vegetables</option>
+                  <option value="meat">meat</option>
+                  <option value="candy">candy</option>
+              </select>
+			  <span class="form_hint">Select your favorite food</span>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="cell narrow">
+              <label for="drink">Drink:</label>
+            </div>
+            <div class="cell">
+              <input type="text" id="drink" name="drink" required>
+			  <span class="form_hint">What do you prefer to drink with your meal?</span>
+            </div>
+        </div>        
+        <div class="row">
+        	<div class="cell narrow">
+              <label for="reason">Reason:</label>
+            </div>
+            <div class="cell">
+              <textarea name="reason" id="reason" required></textarea>
+			  <span class="form_hint">Describe the reason for your party</span>
+            </div>
+        </div>          
+        <div class="row">
+        	<div class="cell narrow">
+              <label for="plan_date">Plan date:</label>
+            </div>
+            <div class="cell">
+              <input type="text" name="plan_date" id="plan_date" value="" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" required>
+			  <span class="form_hint">Provide a realistic date</span>
+            </div>
+        </div> 
+       <div class="row">
+        	<div class="cell narrow">
+              <label for="comments">Comments:</label>
+            </div>
+            <div class="cell">
+              <textarea id="comments" name="comments"></textarea>
+			  <span class="form_hint">In case you want to provide extra information</span>
+            </div>
+        </div>       
+      
+      <div class="row">
+        	<div class="cell narrow">
+              <label for="owner">Name:</label>
+            </div>
+            <div class="cell">
+              <input type="text" name="owner" id="owner" value="Tim Wuytens" readonly>
+			  <span class="form_hint">Automatically detected</span>
+            </div>
+        </div>    
+              
+    <div class="row">
+    	<div class="cell narrow">&nbsp;          
+        </div>
+        <div class="cell">
+          <button onClick="this.form.submit;">Create reservation</button>
+	  	  <span class="form_hint">Create the reservation.</span>
+        </div>      
+    </div>
+  </form> 
+</div>
+<script type="text/javascript" src="./script/jquery.js"></script>
+<script type="text/javascript" src="./script/validation.js"></script>
+</body>
+</html>

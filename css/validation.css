@@ -1,0 +1,188 @@
+/*
+  Title:      HTML5 form validation testing  
+  Version:    0.1  
+  History:    2013-08-06: TWUY : Initial creation  
+*/
+
+body {
+    font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 0;
+}
+
+/* Reservation-test */
+#reservation-test {	
+	margin-top: 10px;
+	padding: 0 20px;	
+}
+
+.input-form {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:13px;
+}
+
+.overdue {
+	background-color:#D8000C;
+}
+
+.small {
+	font-size: 0.8em;
+}
+
+/* Layout tables styles */
+.table {
+	display: table;
+	width: 100%;
+}
+.row {
+	display: table-row;
+	width: 100%;
+}
+.cell {
+    display: table-cell;
+    padding: 3px 5px;
+    vertical-align: middle;
+}
+
+.narrow {
+	width: 225px;  /* for fix width columns */
+	vertical-align: top;  /* to put field names on top of cell */
+}
+
+/* General form styles */
+.main form {
+    border: 1px solid #666666;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    margin: auto;
+    padding: 10px;
+    text-decoration: none;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:13px;
+}
+.main textarea {
+    background: none repeat scroll 0 0 #D0E0F0;
+    border: 1px solid #999999;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    height: 150px;
+    max-width: 900px;
+    min-width: 400px;
+    overflow: auto;
+    width: 400px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:13px;
+}
+.main input[type="text"] {
+    background: none repeat scroll 0 0 #D0E0F0;
+    border: 1px solid #999999;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    height: 25px;
+    width: 400px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:13px;
+}
+.main select {
+    background: none repeat scroll 0 0 #D0E0F0;
+    border: 1px solid #999999;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    height: 25px;
+    width: 400px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size:13px;
+}
+.main fieldset {
+    border: 1px solid #2175BB;
+    padding: 5px 10px 5px 20px;
+	margin: 5px;
+}
+.main legend {
+    background: none repeat scroll 0 0 #2175BB;
+    border: 1px solid #781351;
+    color: #EEEEEE;
+    font-style: normal;
+    line-height: 16px;
+    padding: 3px 10px;
+}
+.main label {
+    font-weight: bold;
+    line-height: 24px;
+    margin-right: 0.5em;
+    text-align: right;
+    width: 4em;
+}
+
+/* form focus styles */
+.main textarea[readonly="readonly"]:focus, .main textarea[readonly]:focus, .main input[readonly="readonly"]:focus, .main input[readonly]:focus {
+    background: none repeat scroll 0 0 #E0E0E0 !important;
+}
+.main textarea[readonly="readonly"], .main textarea[readonly], .main input[readonly="readonly"], .main input[readonly] {
+    background: none repeat scroll 0 0 #E0E0E0 !important;
+}
+.main textarea:focus, .main input[type="text"]:focus, .main textarea:active, .main input[type="text"]:active {
+    background: none repeat scroll 0 0 #FEF6C4;
+    border: 1px solid #2175BB;
+}
+
+/* form validation styles */
+.main input[required] {
+	background:#D0E0F0 url("../img/error.png") no-repeat 97% 50%;	
+}
+.main textarea[required] {
+	background:#D0E0F0 url("../img/error.png") no-repeat 97% 3%;	
+}
+.main select[required] {
+	background:#D0E0F0 url("../img/error.png") no-repeat 93% 50%;	
+}
+
+.main input[required]:focus:invalid {
+	background:url("../img/error.png") no-repeat 97% 50%;
+	border: 1px solid #DF5D56;
+}
+.main textarea[required]:focus:invalid {
+	background:url("../img/error.png") no-repeat 97% 3%;
+	border: 1px solid #DF5D56;
+}
+.main select[required]:focus:invalid {
+	background:url("../img/error.png") no-repeat 93% 50%;
+	border: 1px solid #DF5D56;
+}
+
+.main input[required]:valid {
+	background:#e4f9da url("../img/accept.png") no-repeat 97% 50%;	
+	border: 1px solid #64df2a;
+}
+.main select[required]:valid   {
+	background:#e4f9da url("../img/accept.png") no-repeat 93% 50%;	
+	border: 1px solid #64df2a;
+}
+.main textarea[required]:valid  {
+	background:#e4f9da url("../img/accept.png") no-repeat 97% 3%;
+	border: 1px solid #64df2a;
+}
+
+.main .form_hint {
+    background: none repeat scroll 0 0 #FEF6C4;
+    border: 1px solid #2175BB;
+    border-radius: 3px 3px 3px 3px;    
+    margin-left:20px;
+	margin-right:25px;
+    padding: 2px 6px;
+    z-index: 999; /* hints stay above all other elements */
+    position: absolute; /* allows proper formatting if hint is two lines */
+    display: none;
+}
+.main .form_hint::before {
+    content: "\25C0"; /* left point triangle in escaped unicode */
+    color:#2175BB;
+    position: absolute;
+    top:2px;
+    left:-10px;
+}
+.main input:focus + .form_hint {display: inline;}
+.main textarea:focus + .form_hint {display: inline;}
+.main select:focus + .form_hint {display: inline;}
+.main button:hover + .form_hint {display: inline;}
