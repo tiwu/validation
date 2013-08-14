@@ -127,7 +127,7 @@ body {
     border: 1px solid #2175BB;
 }
 
-/* form validation styles */
+/* HTML5 form validation styles */
 .main input[required] {
 	background:#D0E0F0 url("../img/error.png") no-repeat 97% 50%;	
 }
@@ -187,15 +187,31 @@ body {
 .main select:focus + .form_hint {display: inline;}
 .main button:hover + .form_hint {display: inline;}
 
-/* styles for crappy browsers */
+/* styles for crappy browsers using our JS validation fallback code */
 .placeholder {
 	color: #999;
 }
-.main input.valid {
+.main input[required].valid {
 	background:#e4f9da url("../img/accept.png") no-repeat 97% 50%;	
 	border: 1px solid #64df2a;
 }
-.main input.invalid {
+.main select[required].valid   {
+	background:#e4f9da url("../img/accept.png") no-repeat 93% 50%;	
+	border: 1px solid #64df2a;
+}
+.main textarea[required].valid  {
+	background:#e4f9da url("../img/accept.png") no-repeat 97% 3%;
+	border: 1px solid #64df2a;
+}
+.main input[required].invalid:focus {
 	background:url("../img/error.png") no-repeat 97% 50%;
+	border: 1px solid #DF5D56;
+}
+.main textarea[required].invalid:focus {
+	background:url("../img/error.png") no-repeat 97% 3%;
+	border: 1px solid #DF5D56;
+}
+.main select[required].invalid:focus {
+	background:url("../img/error.png") no-repeat 93% 50%;
 	border: 1px solid #DF5D56;
 }

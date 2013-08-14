@@ -4,6 +4,7 @@
   History:    2013-08-06: TWUY : Initial creation
               2013-08-13: TWUY : Archiving in git
 			                     Placeholder support added
+								 Required and pattern support added
 */
 "use strict";
 
@@ -21,6 +22,7 @@ function validateRegExp(inputValue, validationRule) {
 	return false;
 }
 
+// set classes for validation state
 function setValidState(inputElement, isValid) {
 	if (isValid) {
 		inputElement.removeClass('invalid');
@@ -32,14 +34,35 @@ function setValidState(inputElement, isValid) {
 	}
 }
 
-/* placeholder support
+// validate an element
+function validate(element) {
+	var $obj = $(element);
+	var isValid = false;
+	var required = element.getAttribute('required') == null ? false : true;
+	var pattern = element.getAttribute('pattern') == null ? false : true;
+	
+	if(required) {
+		isValid = ($obj.val().replace($obj.attr('placeholder'), '') != '');
+	}	
+	if(pattern) {
+		isValid = validateRegExp($obj.val().replace($obj.attr('placeholder'), ''), $obj.attr('pattern'));
+	}
+	if(!required && !pattern) {
+		isValid = true;
+	}		
+	
+	setValidState($obj, isValid);
+	return isValid;
+}
+
+/* placeholder support (text, textarea)
      - for each input element with placeholder attribute
 	 - if value is empty: add class placeholder and fill value with placeholder attribute value
 	 - on focus: add class focus + if value is placeholder value, clear value and remove placeholder class
 	 - on blur: remove class focus + if value is empty, set value to placeholder value again
 */
 if(!attributeSupported('placeholder')) {
-	$(':input[placeholder]').each(function() {
+	$('input[placeholder],textarea[placeholder]').each(function() {
 		var $obj = $(this);
 		if($obj.val() === '') {
 			$obj.addClass('placeholder');
@@ -61,44 +84,51 @@ if(!attributeSupported('placeholder')) {
 	});
 }
 
-/* Pattern attribute support
+/* Pattern attribute support (only type text)
      - on each input element with a pattern attribute
      - attach an onChange event
      - call our regex validator with the elements value (replacing possible placeholder text with blanks on the fly) and the regex from the pattern attribute
 */
-if(!attributeSupported('pattern') || ($.browser.safari)) {  // Safari thinks that it has this attribute, but it does not work
-	$(':input[pattern]').each(function() {
+if(!attributeSupported('pattern') || ($.browser.safari)) {  // Safari thinks it has this attribute, but it does not work
+	$('input[pattern]').each(function() {
 		var $pat = $(this);
 		$pat.change(function() {
-			var is_valid = validateRegExp($pat.val().replace($pat.attr('placeholder'), ''), $pat.attr('pattern'));
-			setValidState($pat, is_valid);
+			var is_match = validateRegExp($pat.val().replace($pat.attr('placeholder'), ''), $pat.attr('pattern'));
+			setValidState($pat, is_match);
 		});
 	});
 }
 
-
-
-
-
-// Add required class to inputs
-$(':input[required]').addClass('required');
-
-
-
-// Run on page load
-$(function(){
-	//Required attribute fallback (mostly for IE 9)
-	$('form').submit(function() {
-		if (!attributeSupported("required") || ($.browser.safari)) {
-			//If required attribute is not supported or browser is Safari (Safari thinks that it has this attribute, but it does not work)
-			$("form [required]").each(function(index) {
-				if (!$(this).val()) {
-					//If at least one required value is empty, then ask to fill all required fields.
-					alert("Please fill all required fields.");
-					return false;
-				}
-			});
-		}
-		return false; //This is a test form and I'm not going to submit it
+/*  Required attribute support (text, select, textarea)
+	  - add class to element
+	  - add keyup handler for all
+	  - add change handler for select
+*/
+if(!attributeSupported('required')) {
+	// Add required class to inputs
+	$('input[required],textarea[required],select[required]').addClass('required');
+	// validate text inputs on keystroke
+	$('input[required],textarea[required],select[required]').keyup(function() {
+		validate(this);
 	});
+	$('select[required]').change(function() {
+		validate(this);
+	});
+}
+
+// Block submit if any invalid classes found
+$('form').submit(function() {
+	$('input[required],textarea[required],select[required]').each(function() {
+		validate(this);
+	});
+	if(($(this).find(".invalid").length) == 0) {
+		// Delete any existing placeholder text
+		$('input,textarea').each(function() {
+			if($(this).val() == $(this).attr('placeholder')) $(this).val('');
+		});
+		return true;
+	} else {
+		return false;
+	}	
 });
+
